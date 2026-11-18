@@ -17,6 +17,17 @@ spec:
         - name: app
           image: lab4-advanced-devops-app:latest
           imagePullPolicy: Never
+          env:
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: lab4-app-secret
+                  key: DB_USERNAME
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: lab4-app-secret
+                  key: DB_PASSWORD
           ports:
             - containerPort: 5000
           readinessProbe:
